@@ -54,13 +54,13 @@ instalar_dependencias() {
 
 # Detectar interfaz de red automáticamente o permitir seleccionar
 detectar_interfaz() {
-  INTERFAZ=$(ip route get 8.8.8.8 2>/dev/null | awk '{for(i=1;i<=NF;i++) if ($i=="dev") print $(i+1)}' | head -n1)
+  INTERFAZ=$(ip route show default 2>/dev/null | awk '/default/ {print $5}' | head -n1)
+  
   if [[ -z "$INTERFAZ" ]]; then
-    echo -e "${amarillo}⚠️ No se detectó automáticamente la interfaz. Seleccione manualmente:${neutro}"
-    select opt in $(ls /sys/class/net); do
-      INTERFAZ=$opt
-      break
-    done
+    echo -e "${rojo}❌ No se pudo detectar la interfaz de red activa.${neutro}"
+    exit 1
+  else
+    echo -e "${verde}✅ Interfaz detectada: $INTERFAZ${neutro}"
   fi
 }
 
