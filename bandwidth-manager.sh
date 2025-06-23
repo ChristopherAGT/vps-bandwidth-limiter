@@ -79,7 +79,7 @@ solicitar_limite() {
 # Aplicar limitador con tc
 aplicar_limite() {
   tc qdisc del dev "$INTERFAZ" root 2>/dev/null || true
-  tc qdisc add dev "$INTERFAZ" root handle 1: htb default 30
+  tc qdisc add dev "$INTERFAZ" root handle 1: htb default 30 r2q 5
   tc class add dev "$INTERFAZ" parent 1: classid 1:1 htb rate "${LIMITE}mbit" ceil "${LIMITE}mbit"
   tc class add dev "$INTERFAZ" parent 1:1 classid 1:30 htb rate "${LIMITE}mbit" ceil "${LIMITE}mbit"
 }
