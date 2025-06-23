@@ -242,17 +242,17 @@ menu() {
       6) ver_log ;;
       7) prueba_red ;;
       8)
-        read -p "$(echo -e ${rojo}⚠️ Esto eliminará todos los archivos y el comando. ¿Continuar? (s/n): ${neutro})" CONFIRMAR
-        if [[ "$CONFIRMAR" == "s" ]]; then
-        eliminar_limite
-          rm -f "$DEST"
-          echo -e "${verde}✅ Comando 'bandwidth-manager' desinstalado.${neutro}"
-          echo "Saliendo..."
-          exit 0
-        else
-          echo "Operación cancelada."
-        fi
-        ;;
+  read -p "${rojo}⚠️ Esto eliminará todos los archivos y el comando. ¿Continuar? (s/n): ${neutro}" CONFIRMAR
+  if [[ "$CONFIRMAR" == "s" ]]; then
+    eliminar_limite
+    rm -f "$DEST"
+    echo -e "${verde}✅ Comando 'bandwidth-manager' desinstalado.${neutro}"
+    echo "Saliendo..."
+    exit 0
+  else
+    echo "Operación cancelada."
+  fi
+  ;;
       0)
         echo "Saliendo..."
         exit 0
