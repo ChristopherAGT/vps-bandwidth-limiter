@@ -224,17 +224,16 @@ menu() {
         ;;
       2) ver_estado ;;
       3)
-        if [[ ! -f "$CONFIG" ]]; then
-          echo -e "${rojo}❌ No hay configuración previa.${neutro}"
-          ;;
-        else
-          source "$CONFIG"
-          solicitar_limite
-          aplicar_limite
-          guardar_config
-          echo -e "${verde}✅ Límite actualizado a ${LIMITE} Mbps.${neutro}"
-        fi
-        ;;
+  if [[ ! -f "$CONFIG" ]]; then
+    echo -e "${rojo}❌ No hay configuración previa.${neutro}"
+  else
+    source "$CONFIG"
+    solicitar_limite
+    aplicar_limite
+    guardar_config
+    echo -e "${verde}✅ Límite actualizado a ${LIMITE} Mbps.${neutro}"
+  fi
+  ;;
       4)
         detectar_interfaz
         aplicar_temporal
