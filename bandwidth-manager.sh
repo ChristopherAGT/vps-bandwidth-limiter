@@ -242,7 +242,7 @@ menu() {
       6) ver_log ;;
       7) prueba_red ;;
       8)
-  read -p "${rojo}⚠️ Esto eliminará todos los archivos y el comando. ¿Continuar? (s/n): ${neutro}" CONFIRMAR
+  read -p $'\e[1;31m⚠️ Esto eliminará todos los archivos y el comando. ¿Continuar? (s/n): \e[0m' CONFIRMAR
   if [[ "$CONFIRMAR" == "s" ]]; then
     eliminar_limite
     rm -f "$DEST"
